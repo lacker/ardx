@@ -1,0 +1,26 @@
+{
+  "name": "ardx",
+  "version": "1.0.0",
+  "description": "Arduino stuff",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lacker/ardx.git"
+  },
+  "keywords": [
+    "ardx"
+  ],
+  "author": "Kevin Lacker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lacker/ardx/issues"
+  },
+  "homepage": "https://github.com/lacker/ardx#readme",
+  "dependencies": {
+    "johnny-five": "^0.9.17"
+  }
+}

@@ -6,21 +6,26 @@ let board = new five.Board();
 
 board.on("ready", function() {
 
-  let green = new five.Led(13);
-  let red = new five.Led(10);
-  let big = new five.Led(7);
-
-  console.log('strobing');
-  green.strobe(1000);
-  red.strobe(500);
-  big.strobe(250);
+  let led = [2, 3, 4, 5, 7, 9, 11, 13].map(x => new five.Led(x));
 
   // Make leds available in repl
   this.repl.inject({
-    green: green,
-    red: red,
-    big: big,
+    led: led,
   });
 
-  // try "on", "off", "toggle", "strobe", "stop" (stops strobing)
+  let tick = 0;
+  setInterval(() => {
+    let s = '';
+    for (let i in led) {
+      if (tick & (1 << i)) {
+        led[i].on();
+        s = '1' + s;
+      } else {
+        led[i].off();
+        s = '0' + s;
+      }
+    }
+    console.log('tick', s);
+    tick++;
+  }, 250);
 });

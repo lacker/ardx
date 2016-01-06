@@ -1,31 +1,16 @@
 'use strict';
 
-let five = require("johnny-five");
+let five = require('johnny-five');
 
 let board = new five.Board();
 
-board.on("ready", function() {
+board.on('ready', function() {
 
-  let led = [2, 3, 4, 5, 7, 9, 11, 13].map(x => new five.Led(x));
+  let motor = new five.Motor({pin: 9});
+  motor.start();
+  console.log('started motor. type motor.stop() to stop it');
 
-  // Make leds available in repl
   this.repl.inject({
-    led: led,
+    motor: motor,
   });
-
-  let tick = 0;
-  setInterval(() => {
-    let s = '';
-    for (let i in led) {
-      if (tick & (1 << i)) {
-        led[i].on();
-        s = '1' + s;
-      } else {
-        led[i].off();
-        s = '0' + s;
-      }
-    }
-    console.log('tick', s);
-    tick++;
-  }, 250);
 });

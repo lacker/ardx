@@ -7,7 +7,7 @@ let board = new five.Board();
 board.on('ready', function() {
 
   let servo = new five.Servo(9);
-  let led = new five.Led(5);
+  let led = new five.Led(6);
 
   this.repl.inject({
     servo: servo,
@@ -15,7 +15,7 @@ board.on('ready', function() {
   });
 
   setInterval(() => {
-    servo.step(37);
+    servo.to(Math.random() * 180);
     led.toggle();
   }, 1000);
 

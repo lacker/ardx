@@ -16,9 +16,22 @@ board.on('ready', function() {
     button: button,
   });
 
+  console.log(servo);
+
+  let servoMoving = false;
+
   button.on('down', (value) => {
-    servo.to(Math.random() * 180);
-    led.toggle();
+    if (servoMoving) {
+      console.log('stopping');
+      servoMoving = false;
+      servo.stop();
+      led.off();
+    } else {
+      console.log('starting');
+      servoMoving = true;
+      servo.sweep();
+      led.on();
+    }
   });
 
 });

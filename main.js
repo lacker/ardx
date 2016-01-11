@@ -7,12 +7,14 @@ let board = new five.Board();
 board.on('ready', function() {
 
   let servo = new five.Servo(9);
-  let led = new five.Led(6);
+  let green = new five.Led(6);
+  let red = new five.Led(12);
   let button = new five.Button(2);
 
   this.repl.inject({
     servo: servo,
-    led: led,
+    green: green,
+    red: red,
     button: button,
   });
 
@@ -25,12 +27,14 @@ board.on('ready', function() {
       console.log('stopping');
       servoMoving = false;
       servo.stop();
-      led.off();
+      green.off();
+      red.on();
     } else {
       console.log('starting');
       servoMoving = true;
       servo.sweep();
-      led.on();
+      green.on();
+      red.off();
     }
   });
 

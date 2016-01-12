@@ -10,6 +10,7 @@ board.on('ready', function() {
   let green = new five.Led(6);
   let red = new five.Led(12);
   let button = new five.Button(2);
+  let piezo = new five.Piezo(4);
 
   this.repl.inject({
     servo: servo,
@@ -29,12 +30,14 @@ board.on('ready', function() {
       servo.stop();
       green.off();
       red.on();
+      piezo.frequency(five.Piezo.Notes["a4"], 200);
     } else {
       console.log('starting');
       servoMoving = true;
-      servo.sweep();
+      // servo.sweep();
       green.on();
       red.off();
+      piezo.frequency(five.Piezo.Notes["a3"], 200);
     }
   });
 

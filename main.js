@@ -21,24 +21,35 @@ board.on('ready', function() {
 
   console.log(servo);
 
-  let servoMoving = false;
+  let onMode = false;
 
   button.on('down', (value) => {
-    if (servoMoving) {
+    if (onMode) {
       console.log('stopping');
-      servoMoving = false;
+      onMode = false;
       servo.stop();
       green.off();
       red.on();
-      piezo.frequency(five.Piezo.Notes["a4"], 200);
     } else {
       console.log('starting');
-      servoMoving = true;
-      // servo.sweep();
+      onMode = true;
       green.on();
       red.off();
-      piezo.frequency(five.Piezo.Notes["a3"], 200);
     }
+  });
+
+  let piezoHigh = false;
+  let counter = -1;
+  this.loop(200, () => {
+    counter++;
+    let index = counter % 3;
+    if (index == 0) {
+      piezoHigh = onMode;
+    }
+
+    let notes = onMode ? ['c4', 'e4', 'g4'] : ['c3', 'e3', 'g3'];
+
+    piezo.frequency(five.Piezo.Notes[notes[index]], 200);
   });
 
 });

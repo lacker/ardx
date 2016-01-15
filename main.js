@@ -13,15 +13,23 @@ function xor(n) {
 
 board.on('ready', function() {
 
-  let led = new five.Led(10);
+  let red = new five.Led(10);
+  let green = new five.Led(6);
 
   let counter = -1;
   this.loop(200, () => {
     counter++;
+
     if (xor(counter)) {
-      led.on();
+      red.on();
     } else {
-      led.off();
+      red.off();
+    }
+
+    if (counter % 3 == 0) {
+      green.on();
+    } else {
+      green.off();
     }
   });
 

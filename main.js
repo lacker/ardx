@@ -16,21 +16,13 @@ board.on('ready', function() {
   let red = new five.Led(10);
   let green = new five.Led(6);
 
-  let counter = -1;
-  this.loop(200, () => {
-    counter++;
+  let pot = new five.Sensor({
+    pin: 'A0',
+    freq: 250,
+  });
 
-    if (xor(counter)) {
-      red.on();
-    } else {
-      red.off();
-    }
-
-    if (counter % 3 == 0) {
-      green.on();
-    } else {
-      green.off();
-    }
+  pot.on('read', function() {
+    console.log(this.raw);
   });
 
 });

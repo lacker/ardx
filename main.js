@@ -13,6 +13,8 @@ function xor(n) {
 
 board.on('ready', function() {
 
+  console.log('board ready');
+
   let red = new five.Led(10);
   let green = new five.Led(6);
 

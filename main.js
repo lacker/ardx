@@ -18,13 +18,16 @@ board.on('ready', function() {
   let red = new five.Led(10);
   let green = new five.Led(6);
 
+  red.toggle();
+  green.toggle();
+
   let pot = new five.Sensor({
-    pin: 'A0',
-    freq: 250,
+    pin: 'A1'
   });
 
   pot.on('read', function() {
-    console.log(this.raw);
+    red.toggle();
+    console.log('read something');
   });
 
 });

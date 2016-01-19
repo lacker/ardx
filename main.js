@@ -30,4 +30,8 @@ board.on('ready', function() {
     console.log('read something');
   });
 
+  this.repl.inject({
+    red: red,
+    green: green,
+  });
 });
